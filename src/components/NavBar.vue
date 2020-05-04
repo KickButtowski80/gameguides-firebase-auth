@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary"  dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -12,8 +12,8 @@
         />
       </div>
       <v-spacer></v-spacer>
-      <div v-for="item in items" :key="item.text" class="primary--text">
-        <v-btn v-text="item.text"></v-btn>
+      <div v-for="item in items" :key="item.text" >
+        <v-btn outlined v-text="item.text" class="primary"></v-btn>
       </div>
     </v-app-bar>
   </div>
