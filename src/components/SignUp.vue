@@ -24,7 +24,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="dialog = false">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="signupAnUser()">Sign up</v-btn>
+            <v-btn color="blue darken-1" text @click="signupUser()">Sign up</v-btn>
           </v-card-actions>
         </v-card>
       </v-form>
@@ -43,9 +43,9 @@ export default {
     };
   },
   methods: {
-    signupAnUser() {
+    signupUser() {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch("signupAnUser", {
+        this.$store.dispatch("signupUser", {
           email: this.email,
           password: this.password
         });
