@@ -5,7 +5,7 @@
         <v-expansion-panels>
           <v-expansion-panel v-for="item in items" :key="item.title">
             <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
-            <v-expansion-panel-content>{{item.body}}</v-expansion-panel-content>
+            <v-expansion-panel-content class="lightgrey">{{item.body}}</v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
