@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card max-width="500" class="mx-auto">
+        <v-card max-width="auto" class="mx-auto">
           <v-list>
             <v-list-group v-for="item in items" :key="item.title">
               <template v-slot:activator>
