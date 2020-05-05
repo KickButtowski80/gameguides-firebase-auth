@@ -13,10 +13,10 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field label="Email*" required></v-text-field>
+                  <v-text-field v-model="email" label="Email*" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field label="Password*" type="password" required></v-text-field>
+                  <v-text-field v-model="password" label="Password*" type="password" required></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -24,7 +24,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="dialog = false">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false">Sign up</v-btn>
+            <v-btn color="blue darken-1" text @click="signupAnUser()">Sign up</v-btn>
           </v-card-actions>
         </v-card>
       </v-form>
@@ -35,8 +35,24 @@
 <script>
 export default {
   name: "Signup",
-  data: () => ({
-    dialog: false
-  })
+  data() {
+    return {
+      dialog: false,
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    signupAnUser() {
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch("signupAnUser", {
+          email: this.email,
+          password: this.password
+        });
+        this.$refs.form.reset();
+        this.dialog = false;
+      }
+    }
+  }
 };
 </script>

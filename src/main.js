@@ -4,7 +4,8 @@ import { store } from './store/store'
 import vuetify from './plugins/vuetify';
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "firstbase/auth"
+import "@firebase/auth";
+require('dotenv').config();
 Vue.config.productionTip = false
 
 
@@ -20,12 +21,10 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
-const auth = firebase.auth()
-//update firstore settings
-db.settings({ timestampsInSnapshots: true })
+// const db = firebase.firestore();
+export const auth = firebase.auth()
 
-require('dotenv').config()
+
 new Vue({
   store,
   vuetify,
