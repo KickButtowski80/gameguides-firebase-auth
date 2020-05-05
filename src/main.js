@@ -20,8 +20,10 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const  db = firebase.firestore();
+const db = firebase.firestore();
 const auth = firebase.auth()
+//update firstore settings
+db.settings({ timestampsInSnapshots: true })
 
 require('dotenv').config()
 new Vue({
