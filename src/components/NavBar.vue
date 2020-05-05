@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="primary"  dark>
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -10,16 +10,30 @@
           transition="scale-transition"
           width="40"
         />
-      </div>
+      </div >
       <v-spacer></v-spacer>
-      <div v-for="item in items" :key="item.text" >
-        <v-btn outlined v-text="item.text" class="primary"></v-btn>
+      <div id="navbarElements">
+        <signup-form></signup-form>
+        <login-form></login-form>
+        <account-details></account-details>
+        <create-guide></create-guide>
       </div>
     </v-app-bar>
   </div>
 </template>
 <script>
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Account from './Account';
+import CreateGuide from './CreateGuide'
 export default {
+  name: "NavBar",
+  components: {
+    "signup-form": SignUp,
+    "login-form": Login,
+    'account-details': Account,
+    'create-guide': CreateGuide
+  },
   data() {
     return {
       items: [
@@ -33,3 +47,10 @@ export default {
   }
 };
 </script>
+
+<style lang="css" scoped>
+#navbarElements *{
+ display: inline-flex;
+ margin: 2px;
+}
+</style>
