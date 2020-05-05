@@ -10,11 +10,12 @@
           transition="scale-transition"
           width="40"
         />
-      </div >
+      </div>
       <v-spacer></v-spacer>
       <div id="navbarElements">
         <signup-form></signup-form>
         <login-form></login-form>
+        <logout-button></logout-button>
         <account-details></account-details>
         <create-guide></create-guide>
       </div>
@@ -24,15 +25,17 @@
 <script>
 import SignUp from "./SignUp";
 import Login from "./Login";
-import Account from './Account';
-import CreateGuide from './CreateGuide'
+import LogOut from './LogOut'
+import Account from "./Account";
+import CreateGuide from "./CreateGuide";
 export default {
   name: "NavBar",
   components: {
     "signup-form": SignUp,
     "login-form": Login,
-    'account-details': Account,
-    'create-guide': CreateGuide
+    "logout-button": LogOut,
+    "account-details": Account,
+    "create-guide": CreateGuide
   },
   data() {
     return {
@@ -49,8 +52,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-#navbarElements *{
- display: inline-flex;
- margin: 2px;
+#navbarElements * {
+  display: inline-flex;
+  margin: 2px;
 }
 </style>
