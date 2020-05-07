@@ -8,14 +8,22 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
+    guides: [],
   },
   getters: {
     user: (state) => state.user,
+    guides: (state) => state.guides,
+    guide: (state) => (guideItem) => {
+      return state.guides.find((gI) => gI.id === guideItem.id);
+    },
   },
   mutations: {
     setUser(state, payload) {
       state.user = { ...payload };
     },
+    setToGuids(state, payload){
+      state.guides.push(payload)
+    }
   },
   actions: {
     async signupUser({ commit }, payload) {
@@ -24,7 +32,7 @@ export const store = new Vuex.Store({
           payload.email,
           payload.password
         );
-      
+
         let newUser = {
           id: credential.user.uid,
           email: credential.user.email,
@@ -67,5 +75,9 @@ export const store = new Vuex.Store({
     autoSignIn({ commit }, payload) {
       commit("setUser", payload);
     },
+
+    createAGuide({commit}, payload){
+      commit("setToGuids", payload)
+    }
   },
 });

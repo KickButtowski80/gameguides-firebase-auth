@@ -6,7 +6,7 @@
     <v-row>
       <v-col>
         <v-expansion-panels>
-          <v-expansion-panel v-for="item in items" :key="item.title">
+          <v-expansion-panel v-for="item in guides" :key="item.title">
             <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
             <v-expansion-panel-content class="lightgrey">{{item.body}}</v-expansion-panel-content>
           </v-expansion-panel>
@@ -32,6 +32,9 @@ export default {
   computed: {
     currentUserInfo() {
       return this.$store.getters.user;
+    },
+    guides(){
+      return this.$store.getters.guides
     }
   }
 };
