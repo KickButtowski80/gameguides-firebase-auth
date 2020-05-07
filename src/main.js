@@ -23,13 +23,14 @@ firebase.initializeApp(firebaseConfig);
 // const db = firebase.firestore();
 export const auth = firebase.auth();
 
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     store.dispatch("autoSignIn", user);
-//   } else {
-//     console.log("user logged out");
-//   }
-// });
+auth.onAuthStateChanged((cred) => {
+  if (cred) {
+    const user =  firebase.auth().currentUser 
+    store.dispatch("autoSignIn", {eamil: user.email, id: user.uid});
+  } else {
+    console.log("user logged out");
+  }
+});
 new Vue({
   store,
   vuetify,
