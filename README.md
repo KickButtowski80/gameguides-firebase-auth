@@ -2,7 +2,7 @@
 working with firebase authentication
 
 1. first item 
-what I hoped to learn?
+what I hoped to learn?  
     a. first item
         hope to learn about firestore security rules  
     b. second item
