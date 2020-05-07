@@ -12,12 +12,17 @@
         />
       </div>
       <v-spacer></v-spacer>
+
       <div id="navbarElements">
-        <signup-form></signup-form>
-        <login-form></login-form>
-        <logout-button></logout-button>
-        <account-details></account-details>
-        <create-guide></create-guide>
+        <span v-if="userIsAuthenticated">
+          <logout-button></logout-button>
+          <account-details></account-details>
+          <create-guide></create-guide>
+        </span>
+        <span v-else>
+          <signup-form></signup-form>
+          <login-form></login-form>
+        </span>
       </div>
     </v-app-bar>
   </div>
@@ -25,7 +30,7 @@
 <script>
 import SignUp from "./SignUp";
 import Login from "./Login";
-import LogOut from './LogOut'
+import LogOut from "./LogOut";
 import Account from "./Account";
 import CreateGuide from "./CreateGuide";
 export default {
@@ -35,19 +40,25 @@ export default {
     "login-form": Login,
     "logout-button": LogOut,
     "account-details": Account,
-    "create-guide": CreateGuide
+    "create-guide": CreateGuide,
   },
   data() {
-    return {
-      items: [
-        { text: "Account", link: "#" },
-        { text: "Logout", link: "#" },
-        { text: "Create Guide", link: "#" },
-        { text: "Login", link: "#" },
-        { text: "Signin", link: "#" }
-      ]
-    };
-  }
+    return {};
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.user;
+    },
+    emptyUser() {
+      return Object.keys(this.currentUser).length === 0;
+    },
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        Object.keys(this.currentUser).length !== 0
+      );
+    },
+  },
 };
 </script>
 
