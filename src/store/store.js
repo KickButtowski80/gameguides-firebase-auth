@@ -21,7 +21,7 @@ export const store = new Vuex.Store({
     setUser(state, payload) {
       state.user = { ...payload };
     },
-    setToGuids(state, payload){
+    setToGuides(state, payload){
       state.guides.push(payload)
     }
   },
@@ -77,7 +77,8 @@ export const store = new Vuex.Store({
     },
 
     createAGuide({commit}, payload){
-      commit("setToGuids", payload)
+      commit("setToGuides", payload)
+      localStorage.setItem("guides")
     }
   },
 });
