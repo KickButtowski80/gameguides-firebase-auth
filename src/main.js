@@ -20,13 +20,17 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// const db = firebase.firestore();
+export const db = firebase.firestore();
 export const auth = firebase.auth();
 
 auth.onAuthStateChanged((cred) => {
   if (cred) {
     const user =  firebase.auth().currentUser 
     store.dispatch("autoSignIn", {eamil: user.email, id: user.uid});
+    if(user) {
+      store.dispatch("fetchingDatafromFS")
+    }
+    
   } else {
     console.log("user logged out");
   }

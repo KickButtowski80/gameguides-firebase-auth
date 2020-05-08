@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 // import db from "../main";
 import { auth } from "../main";
+import { db } from "../main";
 
 Vue.use(Vuex);
 
@@ -21,11 +22,30 @@ export const store = new Vuex.Store({
     setUser(state, payload) {
       state.user = { ...payload };
     },
-    setToGuides(state, payload){
-      state.guides.push(payload)
-    }
+    setGuide(state, payload) {
+      state.guides.push(payload);
+    },
+    setGuides(state, payload) {
+      state.guides = { ...payload };
+    },
   },
   actions: {
+    async fetchingDatafromFS({ commit }) {
+      try {
+        const snapShot = await db.collection("guides").get();
+        const tempGuidesList = [];
+        snapShot.docs.forEach((doc) => {
+          tempGuidesList.push({
+            title: doc.data().title,
+            body: doc.data().body,
+          });
+        });
+        commit("setGuides", tempGuidesList);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     async signupUser({ commit }, payload) {
       try {
         let credential = await auth.createUserWithEmailAndPassword(
@@ -76,9 +96,8 @@ export const store = new Vuex.Store({
       commit("setUser", payload);
     },
 
-    createAGuide({commit}, payload){
-      commit("setToGuides", payload)
-      localStorage.setItem("guides")
-    }
+    createAGuide({ commit }, payload) {
+      commit("setGuide", payload);
+    },
   },
 });
