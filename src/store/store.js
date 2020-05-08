@@ -25,8 +25,6 @@ export const store = new Vuex.Store({
       state.user = { ...payload };
     },
     setGuide(state, payload) {
-      console.log(payload)
-      console.log(typeof(state.guides) )
       state.guides.push(payload);
     },
     setGuides(state, payload) {
