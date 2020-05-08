@@ -25,13 +25,14 @@ export const auth = firebase.auth();
 
 auth.onAuthStateChanged((cred) => {
   if (cred) {
-    const user =  firebase.auth().currentUser 
-    store.dispatch("autoSignIn", {eamil: user.email, id: user.uid});
-    if(user) {
-      store.dispatch("fetchingDatafromFS")
+    const user = firebase.auth().currentUser;
+    store.dispatch("autoSignIn", { eamil: user.email, id: user.uid });
+    if (user) {
+      store.dispatch("fetchingDatafromFS");
     }
-    
   } else {
+    store.dispatch("setGuides", null);
+    
     console.log("user logged out");
   }
 });

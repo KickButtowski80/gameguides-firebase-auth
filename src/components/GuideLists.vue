@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>{{ currentUserInfo }}</v-col>
+      <v-col>
+        <v-alert border="left" color="indigo" dark v-show="message">
+          {{ message }}
+        </v-alert>
+      </v-col>
     </v-row>
     <v-row>
       <v-col>
@@ -45,9 +49,12 @@ export default {
     guides() {
       return this.$store.getters.guides;
     },
-    emptyGuides(){
-      return this.$store.getters.guides.length === 0 
-    }
+    emptyGuides() {
+      return this.$store.getters.guides.length === 0;
+    },
+    message() {
+      return this.$store.getters.message;
+    },
   },
 };
 </script>
