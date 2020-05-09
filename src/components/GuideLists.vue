@@ -7,7 +7,9 @@
         </v-alert>
       </v-col>
     </v-row>
-    {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{ guidesListStatus }}
+    {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{
+      guidesListStatus
+    }}
     <v-row v-show="userIsAuthenticated">
       <v-col>
         <v-expansion-panels v-if="guidesListStatus">
@@ -65,11 +67,9 @@ export default {
   watch: {
     guidesListEmpty: {
       handler(oldVal, newVal) {
-        alert(oldVal+ "---" + newVal + "+++" + this.guidesListStatus)
-        if(this.guidesListStatus)
-        this.guidesListStatus = oldVal;
-        else
-        this.guidesListStatus = newVal;
+        // alert(oldVal+ "---" + newVal + "+++" + this.guidesListStatus)
+        if (this.guidesListStatus) this.guidesListStatus = oldVal;
+        else this.guidesListStatus = newVal;
       },
     },
   },

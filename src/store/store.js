@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
-    guides: [], 
+    guides: [],
   },
   getters: {
     user: (state) => state.user,
@@ -17,11 +17,10 @@ export const store = new Vuex.Store({
     guide: (state) => (guideItem) => {
       return state.guides.find((gI) => gI.id === guideItem.id);
     },
-    
   },
   mutations: {
     setUser(state, payload) {
-      state.user = {...payload};
+      state.user = { ...payload };
     },
     setGuide(state, payload) {
       state.guides.push(payload);
@@ -65,7 +64,7 @@ export const store = new Vuex.Store({
           id: credential.user.uid,
           email: credential.user.email,
         };
- 
+
         commit("setUser", newUser);
       } catch (error) {
         console.log(error.message);
@@ -96,7 +95,7 @@ export const store = new Vuex.Store({
           id: credential.user.uid,
           email: credential.user.email,
         };
-        
+
         commit("setUser", loggedInUser);
       } catch (error) {
         alert(error.message);
@@ -107,12 +106,20 @@ export const store = new Vuex.Store({
       commit("setUser", payload);
     },
 
-    createAGuide({ commit }, payload) {
-      commit("setGuide", payload);
+    async createAGuide({ commit }, payload) {
+      try {
+        const docRef = await db.collection("guides").add({
+          title: payload.title,
+          body: payload.body,
+        });
+        commit("setGuide", payload);
+        console.log(docRef.id);
+      } catch (error) {
+        console.log(error);
+      }
     },
     setGuides({ commit }, payload) {
       commit("setGuides", payload);
     },
-  
   },
 });
