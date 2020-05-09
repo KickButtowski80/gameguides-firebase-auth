@@ -7,6 +7,7 @@
         </v-alert>
       </v-col>
     </v-row>
+    
     {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{
       guidesListStatus
     }}
@@ -56,6 +57,9 @@ export default {
     },
     guidesListEmpty() {
       return this.$store.getters.guides.length === 0;
+    },
+    userStatus(){
+      return this.$store.getters.user
     },
     userIsAuthenticated() {
       return (

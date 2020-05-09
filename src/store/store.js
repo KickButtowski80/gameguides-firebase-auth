@@ -38,6 +38,7 @@ export const store = new Vuex.Store({
   actions: {
     async fetchingDatafromFS({ commit }) {
       try {
+        // check how to use onSnapshot inseated of get here
         const snapShot = await db.collection("guides").get();
         const tempGuidesList = [];
         snapShot.docs.forEach((doc) => {
@@ -76,7 +77,7 @@ export const store = new Vuex.Store({
         const user = await auth.signOut();
         commit("setUser", null);
         // commit("setGuides", null)
-        console.log("successful logout", user);
+        console.log("successful logout", user, JSON.stringify(user));
       } catch (error) {
         console.log(error.message);
       }
@@ -90,7 +91,7 @@ export const store = new Vuex.Store({
           payload.email,
           payload.password
         );
-        console.log(credential);
+        // console.log(credential);
         let loggedInUser = {
           id: credential.user.uid,
           email: credential.user.email,

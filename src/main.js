@@ -22,17 +22,22 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
-// 
+//
 auth.onAuthStateChanged((cred) => {
- 
+  // consider to put menu opration over here
+  // user is logged in can see stuff
+  // user is logged out can see login logout
   if (cred) {
     const user = firebase.auth().currentUser;
     store.dispatch("autoSignIn", { eamil: user.email, id: user.uid });
     if (user) {
-     store.dispatch("fetchingDatafromFS");
+      store.dispatch("fetchingDatafromFS");
     }
   } else {
-    store.dispatch("setGuides", null);  
+    // how to clear setGuides so it will not be accessable in client's
+    // borwser console
+
+    store.dispatch("setGuides", []);
     console.log("user logged out");
   }
 });

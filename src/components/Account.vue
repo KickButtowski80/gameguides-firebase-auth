@@ -12,7 +12,7 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12">put account details here</v-col>
+                <v-col cols="12">Logged in as: {{ userInfo["eamil"] }}</v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -33,8 +33,15 @@ export default {
     return {
       dialog: false
     };
+  },
+  computed:{
+  userInfo(){
+    return this.$store.getters.user
   }
-};
+ 
+  }
+}
+
 </script>
 <style lang="css" scoped >
 </style>
