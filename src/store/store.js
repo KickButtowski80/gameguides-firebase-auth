@@ -9,8 +9,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
-    guides: [],
-    message: null
+    guides: [], 
   },
   getters: {
     user: (state) => state.user,
@@ -18,21 +17,24 @@ export const store = new Vuex.Store({
     guide: (state) => (guideItem) => {
       return state.guides.find((gI) => gI.id === guideItem.id);
     },
-    message: (state) => state.message
+    
   },
   mutations: {
     setUser(state, payload) {
-      state.user = { ...payload };
+      state.user = {...payload};
     },
     setGuide(state, payload) {
       state.guides.push(payload);
     },
     setGuides(state, payload) {
-      state.guides = [...payload];
+      //it is not itreatables
+      // state.guides = [...payload];
+      // check this https://flaviocopes.com/how-to-clone-javascript-object/
+      state.guides = JSON.parse(JSON.stringify(payload));
     },
-    setMessagetoLogin(state, payload){
-      state.message = payload
-    }
+    setMessagetoLogin(state, payload) {
+      state.message = payload;
+    },
   },
   actions: {
     async fetchingDatafromFS({ commit }) {
@@ -45,6 +47,7 @@ export const store = new Vuex.Store({
             body: doc.data().body,
           });
         });
+        console.log(tempGuidesList);
         commit("setGuides", tempGuidesList);
       } catch (error) {
         console.log(error);
@@ -62,7 +65,7 @@ export const store = new Vuex.Store({
           id: credential.user.uid,
           email: credential.user.email,
         };
-        commit("setMessagetoLogin", null);
+ 
         commit("setUser", newUser);
       } catch (error) {
         console.log(error.message);
@@ -73,7 +76,7 @@ export const store = new Vuex.Store({
       try {
         const user = await auth.signOut();
         commit("setUser", null);
-        commit("setMessagetoLogin", "please login to see the guides list")
+        // commit("setGuides", null)
         console.log("successful logout", user);
       } catch (error) {
         console.log(error.message);
@@ -93,7 +96,7 @@ export const store = new Vuex.Store({
           id: credential.user.uid,
           email: credential.user.email,
         };
-        commit("setMessagetoLogin", null)
+        
         commit("setUser", loggedInUser);
       } catch (error) {
         alert(error.message);
@@ -107,9 +110,9 @@ export const store = new Vuex.Store({
     createAGuide({ commit }, payload) {
       commit("setGuide", payload);
     },
-    setGuides({commit}, payload){
-      commit("setGuides", payload)
-    }
-
+    setGuides({ commit }, payload) {
+      commit("setGuides", payload);
+    },
+  
   },
 });

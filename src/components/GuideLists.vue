@@ -1,20 +1,16 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row v-show="!userIsAuthenticated">
       <v-col>
-        <v-alert border="left" color="indigo" dark v-show="message">
-          {{ message }}
+        <v-alert border="left" color="indigo" dark>
+          please login to see the guides list
         </v-alert>
       </v-col>
     </v-row>
-    <v-row>
+    {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{ guidesListStatus }}
+    <v-row v-show="userIsAuthenticated">
       <v-col>
-        <span v-if="emptyGuides">
-          <v-alert type="info" icon="mdi-emoticon-sad">
-            Guides List is empty
-          </v-alert>
-        </span>
-        <v-expansion-panels v-else>
+        <v-expansion-panels v-if="guidesListStatus">
           <v-expansion-panel v-for="item in guides" :key="item.title">
             <v-expansion-panel-header>{{
               item.title
@@ -24,6 +20,11 @@
             }}</v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
+        <span v-else>
+          <v-alert type="info" icon="mdi-emoticon-sad">
+            Guides List is empty
+          </v-alert>
+        </span>
       </v-col>
     </v-row>
   </v-container>
@@ -40,8 +41,10 @@ export default {
         { title: "Guide title3", body: "Lorem ipsum dolor sit amet" },
         { title: "Guide title4", body: "Lorem ipsum dolor sit amet" },
       ],
+      guidesListStatus: false,
     };
   },
+
   computed: {
     currentUserInfo() {
       return this.$store.getters.user;
@@ -49,11 +52,25 @@ export default {
     guides() {
       return this.$store.getters.guides;
     },
-    emptyGuides() {
+    guidesListEmpty() {
       return this.$store.getters.guides.length === 0;
     },
-    message() {
-      return this.$store.getters.message;
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        Object.keys(this.$store.getters.user).length !== 0
+      );
+    },
+  },
+  watch: {
+    guidesListEmpty: {
+      handler(oldVal, newVal) {
+        alert(oldVal+ "---" + newVal + "+++" + this.guidesListStatus)
+        if(this.guidesListStatus)
+        this.guidesListStatus = oldVal;
+        else
+        this.guidesListStatus = newVal;
+      },
     },
   },
 };
