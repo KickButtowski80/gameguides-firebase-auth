@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     user: null,
     guides: [],
+    bios: [],
   },
   getters: {
     user: (state) => state.user,
@@ -17,10 +18,18 @@ export const store = new Vuex.Store({
     guide: (state) => (guideItem) => {
       return state.guides.find((gI) => gI.id === guideItem.id);
     },
+    bios: (state) => state.bios,
+    bio: (state) => {
+         return state.bios.find((bu) => bu.userId === state.user.id);
+    },
   },
   mutations: {
     setUser(state, payload) {
       state.user = { ...payload };
+    },
+    setBio(state, payload) {
+    alert(payload)
+      state.bios.push(payload);
     },
     setGuide(state, payload) {
       state.guides.push(payload);
@@ -60,13 +69,29 @@ export const store = new Vuex.Store({
           payload.email,
           payload.password
         );
+        // let bioCred = await db.collection('users').add({
+        //   biography: biographyUser,
+        //   userId: credential.user.uid
+        // })
+        let bioCred = await db
+          .collection("users")
+          .doc(credential.user.uid)
+          .set({
+            bio: payload.biography,
+          });
+        console.log(bioCred);
 
         let newUser = {
           id: credential.user.uid,
           email: credential.user.email,
         };
 
+        let newBio = {
+          userId: credential.user.uid,
+          biography: payload.biography,
+        };
         commit("setUser", newUser);
+        commit("setBio", newBio);
       } catch (error) {
         console.log(error.message);
       }

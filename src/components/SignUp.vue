@@ -18,6 +18,9 @@
                 <v-col cols="12">
                   <v-text-field v-model="password" label="Password*" type="password" required></v-text-field>
                 </v-col>
+                <v-col cols="12">
+                  <v-text-field v-model="bio" label="Biography" required></v-text-field>
+                </v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -40,7 +43,8 @@ export default {
     return {
       dialog: false,
       email: null,
-      password: null
+      password: null,
+      bio: null,
     };
   },
   methods: {
@@ -48,8 +52,8 @@ export default {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("signupUser", {
           email: this.email,
-          password: this.password
-        });
+          password: this.password,
+         biography: this.bio});
         this.$refs.form.reset();
         this.dialog = false;
       }
