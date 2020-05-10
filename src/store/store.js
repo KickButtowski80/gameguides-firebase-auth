@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import db from "../main";
 import { auth } from "../main";
 import { db } from "../main";
 
@@ -11,25 +10,27 @@ export const store = new Vuex.Store({
     user: null,
     guides: [],
     bios: [],
+    bio: "empty",
+    userHasAttemptedAuthentication: false,
   },
   getters: {
+    userHasAttemptedAuthentication: (state) =>
+      state.userHasAttemptedAuthentication,
     user: (state) => state.user,
     guides: (state) => state.guides,
     guide: (state) => (guideItem) => {
       return state.guides.find((gI) => gI.id === guideItem.id);
     },
-    bios: (state) => state.bios,
-    bio: (state) => {
-         return state.bios.find((bu) => bu.userId === state.user.id);
-    },
+
+    bio: (state) => state.bio,
   },
   mutations: {
     setUser(state, payload) {
       state.user = { ...payload };
+      // state.userHasAttemptedAuthentication = true;
     },
     setBio(state, payload) {
-    alert(payload)
-      state.bios.push(payload);
+      state.bio = payload;
     },
     setGuide(state, payload) {
       state.guides.push(payload);
@@ -45,7 +46,7 @@ export const store = new Vuex.Store({
     },
   },
   actions: {
-    async fetchingDatafromFS({ commit }) {
+    async fetchingGuidesfromFS({ commit }) {
       try {
         // check how to use onSnapshot inseated of get here
         const snapShot = await db.collection("guides").get();
@@ -62,23 +63,38 @@ export const store = new Vuex.Store({
         console.log(error);
       }
     },
-
+    async fetcinguserBioFromFS({ commit }) {
+      // check how to use onSnapshot inseated of get here
+      try {
+        let querySnapshot = await db
+          .collection("users")
+          .where("userId", "==", "7A7b8TYA1qRHESPIgfAKlebBWRs2")
+          .get();
+        console.log("querySnapshot", querySnapshot);
+        querySnapshot.forEach(function(doc) {
+          console.log(doc.id, " => ", doc.data());
+          commit("setBio", doc.data().biography);
+        });
+      } catch (error) {
+        console.log("bio of user ", error);
+      }
+    },
     async signupUser({ commit }, payload) {
       try {
         let credential = await auth.createUserWithEmailAndPassword(
           payload.email,
           payload.password
         );
-        // let bioCred = await db.collection('users').add({
-        //   biography: biographyUser,
-        //   userId: credential.user.uid
-        // })
-        let bioCred = await db
-          .collection("users")
-          .doc(credential.user.uid)
-          .set({
-            bio: payload.biography,
-          });
+        let bioCred = await db.collection("users").add({
+          biography: payload.biography,
+          userId: credential.user.uid,
+        });
+        // let bioCred = await db
+        //   .collection("users")
+        //   .doc(credential.user.uid)
+        //   .set({
+        //     bio: payload.biography,
+        //   });
         console.log(bioCred);
 
         let newUser = {
@@ -88,7 +104,7 @@ export const store = new Vuex.Store({
 
         let newBio = {
           userId: credential.user.uid,
-          biography: payload.biography,
+          bio: payload.biography,
         };
         commit("setUser", newUser);
         commit("setBio", newBio);

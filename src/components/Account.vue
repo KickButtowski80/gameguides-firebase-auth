@@ -14,8 +14,8 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12">Logged in as: {{ userInfo["eamil"] }}</v-col>
-                <v-col cols="12">Bio {{userBio.biography}} </v-col>
+                <v-col cols="12">Logged in as: {{ userInfo["email"] }}</v-col>
+                <v-col cols="12">Bio {{userBio}} </v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -44,7 +44,7 @@ export default {
       return this.$store.getters.user;
     },
     userBio(){
-      return this.$store.getters.bio
+      return  this.$store.getters.bio
     }
   },
 };

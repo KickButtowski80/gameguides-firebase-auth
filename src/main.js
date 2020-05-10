@@ -29,15 +29,18 @@ auth.onAuthStateChanged((cred) => {
   // user is logged out can see login logout
   if (cred) {
     const user = firebase.auth().currentUser;
-    store.dispatch("autoSignIn", { eamil: user.email, id: user.uid });
+    store.dispatch("autoSignIn", { email: user.email, id: user.uid });
+
     if (user) {
-      store.dispatch("fetchingDatafromFS");
+      store.dispatch("fetcinguserBioFromFS", user);
+      store.dispatch("fetchingGuidesfromFS");
     }
   } else {
     // how to clear setGuides so it will not be accessable in client's
     // borwser console
 
     store.dispatch("setGuides", []);
+
     console.log("user logged out");
   }
 });
