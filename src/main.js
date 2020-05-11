@@ -31,15 +31,13 @@ auth.onAuthStateChanged((cred) => {
     const user = firebase.auth().currentUser;
     store.dispatch("autoSignIn", { email: user.email, id: user.uid });
 
-    if (user) {
-      store.dispatch("fetcinguserBioFromFS", user);
-      store.dispatch("fetchingGuidesfromFS");
-    }
+    store.dispatch("fetchingGuidesfromFS");
+    store.dispatch("fetcinguserBioFromFS", user);
   } else {
     // how to clear setGuides so it will not be accessable in client's
     // borwser console
 
-    store.dispatch("setGuides", []);
+    // store.dispatch("setGuides", []);
 
     console.log("user logged out");
   }
