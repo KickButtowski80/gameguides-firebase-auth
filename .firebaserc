@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "paz-game-guides"
+    "default": "paz-game-guides",
+    "paz-game-guides-alias": "paz-game-guides",
+    "no": "paz-game-guides",
+    "staging": "paz-game-guides"
   }
 }

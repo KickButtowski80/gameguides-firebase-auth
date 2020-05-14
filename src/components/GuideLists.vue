@@ -11,6 +11,14 @@
     {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{
       guidesListStatus
     }}
+
+    <v-row v-show="userIsAuthenticated">
+      <v-col>
+    
+      <make-anuser-amdin> </make-anuser-amdin>
+       </v-col>
+    </v-row>
+
     <v-row v-show="userIsAuthenticated">
       <v-col>
         <v-expansion-panels v-if="guidesListStatus">
@@ -34,8 +42,14 @@
 </template>
 
 <script>
+
+import MakeAdminVue from './MakeAdmin.vue';
+
 export default {
   name: "GuideLists",
+  components:{
+    'make-anuser-amdin': MakeAdminVue
+  },
   data() {
     return {
       items: [

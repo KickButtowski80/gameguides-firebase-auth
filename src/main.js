@@ -4,6 +4,7 @@ import { store } from "./store/store";
 import vuetify from "./plugins/vuetify";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/functions"
 import "@firebase/auth";
 require("dotenv").config();
 Vue.config.productionTip = false;
@@ -22,6 +23,7 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
+export const functions = firebase.functions()
 //
 auth.onAuthStateChanged((cred) => {
   // consider to put menu opration over here

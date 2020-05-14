@@ -1,23 +1,27 @@
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
+const functions = require('firebase-functions');
+const admin = require('firebase-admin')
+admin.initializeApp()
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions
 
-admin.initializeApp();
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//  response.send("Hello from Firebase!");
+// });
 
-exports.AddAdminRole = functions.https.onCall((data, context) => {
-  // get user and add custom claim
-  return admin
-    .auth()
-    .getUserByEmail(data.email)
-    .then((user) => {
-      return admin.auth().setCustomUserClaims(user.uid, {
-        admin: true,
-      });
-    })
-    .then(() => {
-      return {
-        message: `SUccess! ${data.email} has been made an admin`,
-      };
-    }).catch(error =>{
-       return error 
-    })
-});
+exports.addAdminRole = functions.https.onCall((data, context) => {
+    // get user and add custom claim (admin)
+
+    return admin.auth()
+        .getUserByEmail(data.email).then(user => {
+            return admin.auth().setCustomUserClaims(user.uid, {
+                admin: true
+            })
+        }).then(() => {
+           return{
+               message: `Success! ${data.email} has been an admin`
+           }
+        }).catch(error=> {
+            console.log(error)
+            return error
+        })
+})

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { auth } from "../main";
 import { db } from "../main";
-
+ 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -11,11 +11,10 @@ export const store = new Vuex.Store({
     guides: [],
     bios: [],
     bio: "empty",
-    userHasAttemptedAuthentication: false,
+ 
   },
   getters: {
-    userHasAttemptedAuthentication: (state) =>
-      state.userHasAttemptedAuthentication,
+  
     user: (state) => state.user,
     guides: (state) => state.guides,
     guide: (state) => (guideItem) => {
@@ -44,6 +43,10 @@ export const store = new Vuex.Store({
     setMessagetoLogin(state, payload) {
       state.message = payload;
     },
+
+    // setAdmin(state, payload) {
+
+    // },
   },
   actions: {
     async fetchingGuidesfromFS({ commit }) {
@@ -163,5 +166,8 @@ export const store = new Vuex.Store({
     setGuides({ commit }, payload) {
       commit("setGuides", payload);
     },
+    // makeAdmin({ commit }, payload) {
+    //   commit("setAdmin", payload);
+    // },
   },
 });
