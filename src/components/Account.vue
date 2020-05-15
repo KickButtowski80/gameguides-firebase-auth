@@ -14,7 +14,7 @@
               <v-row>
                 <v-col cols="12">Logged in as: {{ userInfo["email"] }}</v-col>
                 <v-col cols="12">Bio {{userBio}}</v-col>
-                <v-btn @click="adminInfo">Admin?</v-btn>
+               <v-col>{{userInfo}}</v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -29,7 +29,7 @@
   </v-row>
 </template>
 <script>
-import firebase from "firebase/app";
+// import firebase from "firebase/app";
 export default {
   name: "Account",
   data() {
@@ -39,10 +39,11 @@ export default {
   },
   methods:{
     adminInfo(){
-      firebase.auth().currentUser.getIdTokenResult()
-      .then((idTokenResult) => {
-         console.log(idTokenResult.claims)
-      })
+      // firebase.auth().currentUser.getIdTokenResult()
+      // .then((idTokenResult) => {
+      //    console.log(idTokenResult.claims)
+      // })
+      this.$store.getters.user.admin
     },
  
   },

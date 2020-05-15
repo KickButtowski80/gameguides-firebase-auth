@@ -25,12 +25,16 @@ export const db = firebase.firestore();
 export const auth = firebase.auth();
 export const functions = firebase.functions()
 //
-auth.onAuthStateChanged((cred) => {
+auth.onAuthStateChanged((user) => {
   // consider to put menu opration over here
   // user is logged in can see stuff
   // user is logged out can see login logout
-  if (cred) {
+  if (user) {
     const user = firebase.auth().currentUser;
+    user.getIdTokenResult().then(idTokenResult => {
+      console.log(idTokenResult.claims.admin)
+      store.dispatch("setAdmin" , idTokenResult.claims.admin)
+    })
     store.dispatch("autoSignIn", { email: user.email, id: user.uid });
 
     store.dispatch("fetchingGuidesfromFS");

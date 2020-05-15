@@ -44,9 +44,10 @@ export const store = new Vuex.Store({
       state.message = payload;
     },
 
-    // setAdmin(state, payload) {
+    setAdmin(state, payload) {
+       state.user.admin = payload
 
-    // },
+    },
   },
   actions: {
     async fetchingGuidesfromFS({ commit }) {
@@ -166,8 +167,8 @@ export const store = new Vuex.Store({
     setGuides({ commit }, payload) {
       commit("setGuides", payload);
     },
-    // makeAdmin({ commit }, payload) {
-    //   commit("setAdmin", payload);
-    // },
+    setAdmin({ commit }, payload) {
+      commit("setAdmin", payload);
+    },
   },
 });

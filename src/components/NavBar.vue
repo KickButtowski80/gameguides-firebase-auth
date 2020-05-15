@@ -17,7 +17,9 @@
         <span v-if="userIsAuthenticated">
           <logout-button></logout-button>
           <account-details></account-details>
-          <create-guide></create-guide>
+          <span v-show="admin">
+            <create-guide></create-guide>
+          </span>
         </span>
         <span v-else>
           <signup-form></signup-form>
@@ -40,12 +42,15 @@ export default {
     "login-form": Login,
     "logout-button": LogOut,
     "account-details": Account,
-    "create-guide": CreateGuide,
+    "create-guide": CreateGuide
   },
   data() {
     return {};
   },
   computed: {
+    admin() {
+      return this.$store.getters.user.admin !== undefined;
+    },
     currentUser() {
       return this.$store.getters.user;
     },
@@ -57,8 +62,8 @@ export default {
         this.$store.getters.user !== null &&
         Object.keys(this.currentUser).length !== 0
       );
-    },
-  },
+    }
+  }
 };
 </script>
 
