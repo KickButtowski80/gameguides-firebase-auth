@@ -1,0 +1,65 @@
+[debug] [2020-05-14T04:10:51.746Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T04:10:51.749Z] Command:       /root/.nvm/versions/node/v14.0.0/bin/node /usr/local/bin/firebase serve --only functions,hosting
+[debug] [2020-05-14T04:10:51.749Z] CLI Version:   8.2.0
+[debug] [2020-05-14T04:10:51.750Z] Platform:      linux
+[debug] [2020-05-14T04:10:51.750Z] Node Version:  v14.0.0
+[debug] [2020-05-14T04:10:51.924Z] Time:          Wed May 13 2020 21:10:51 GMT-0700 (Pacific Daylight Time)
+[debug] [2020-05-14T04:10:51.924Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T04:10:51.924Z] 
+[debug] [2020-05-14T04:10:51.935Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-14T04:10:51.936Z] > authorizing via signed-in user
+[debug] [2020-05-14T04:10:51.937Z] [iam] checking project paz-game-guides for permissions ["firebase.projects.get"]
+[debug] [2020-05-14T04:10:51.941Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/paz-game-guides:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-05-14T04:10:52.168Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 04:10:51 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=64","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-14T04:10:52.170Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/paz-game-guides  
+ 
+[debug] [2020-05-14T04:10:52.430Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 04:10:51 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-14T04:10:52.434Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/paz-game-guides/webApps/-/config  
+ 
+[info] ✔  functions: Using node@14 from host.
+[info] ✔  functions: functions emulator started at http://localhost:5001
+[debug] [2020-05-14T04:10:52.973Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 04:10:52 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: Watching "/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions" for Cloud Functions...
+[debug] [2020-05-14T04:10:53.150Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-05-14T04:10:53.151Z] [worker-pool] Adding worker with key ~diagnostic~, total=1 
+[debug] [2020-05-14T04:10:53.151Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-05-14T04:10:53.152Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: Assigning socketPath: /tmp/fire_emu_10085.sock 
+[debug] [2020-05-14T04:10:53.152Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: BUSY 
+[info] i  hosting: Serving hosting files from: ./dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-05-14T04:10:53.659Z] [runtime-status] [10085] Functions runtime initialized. {"cwd":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions","node_version":"14.0.0"} 
+[debug] [2020-05-14T04:10:53.660Z] [runtime-status] [10085] Disabled runtime features: undefined 
+[debug] [2020-05-14T04:10:53.663Z] [runtime-status] [10085] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-05-14T04:10:53.666Z] [runtime-status] [10085] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:10:53.668Z] [runtime-status] [10085] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-14T04:10:53.724Z] [runtime-status] [10085] Checked functions.config() {"config":{}} 
+[debug] [2020-05-14T04:10:53.725Z] [runtime-status] [10085] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:10:53.727Z] [runtime-status] [10085] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-05-14T04:10:53.728Z] [runtime-status] [10085] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:10:53.728Z] [runtime-status] [10085] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-05-14T04:10:53.730Z] [runtime-status] [10085] initializeApp(DEFAULT) {"databaseURL":"https://paz-game-guides.firebaseio.com","storageBucket":"paz-game-guides.appspot.com","projectId":"paz-game-guides"} 
+[info] ✔  functions[addAdminRole]: http function initialized (http://localhost:5001/paz-game-guides/us-central1/addAdminRole).
+[debug] [2020-05-14T04:10:53.733Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: IDLE 
+[debug] [2020-05-14T04:16:49.379Z] File /mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/package.json changed, reloading triggers 
+[debug] [2020-05-14T04:16:50.380Z] [worker-pool] Shutting down IDLE worker (~diagnostic~) 
+[debug] [2020-05-14T04:16:50.381Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: FINISHING 
+[debug] [2020-05-14T04:16:50.404Z] [worker-pool] addWorker(~diagnostic~) 
+[debug] [2020-05-14T04:16:50.404Z] [worker-pool] Adding worker with key ~diagnostic~, total=2 
+[debug] [2020-05-14T04:16:50.404Z] [worker-pool] submitWork(triggerId=) 
+[debug] [2020-05-14T04:16:50.404Z] [worker-~diagnostic~-bbb82c03-33d5-4890-9616-42dba2200122]: Assigning socketPath: /tmp/fire_emu_10912.sock 
+[debug] [2020-05-14T04:16:50.404Z] [worker-~diagnostic~-bbb82c03-33d5-4890-9616-42dba2200122]: BUSY 
+[debug] [2020-05-14T04:16:50.406Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: exited 
+[debug] [2020-05-14T04:16:50.406Z] [worker-~diagnostic~-3b739281-1027-4971-9237-98520d5abeb6]: FINISHED 
+[debug] [2020-05-14T04:16:50.862Z] [runtime-status] [10912] Functions runtime initialized. {"cwd":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions","node_version":"14.0.0"} 
+[debug] [2020-05-14T04:16:50.863Z] [runtime-status] [10912] Disabled runtime features: undefined 
+[debug] [2020-05-14T04:16:50.867Z] [runtime-status] [10912] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-05-14T04:16:50.869Z] [runtime-status] [10912] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:16:50.871Z] [runtime-status] [10912] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] 
+[debug] [2020-05-14T04:16:50.922Z] [runtime-status] [10912] Checked functions.config() {"config":{}} 
+[debug] [2020-05-14T04:16:50.923Z] [runtime-status] [10912] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:16:50.925Z] [runtime-status] [10912] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"} 
+[debug] [2020-05-14T04:16:50.926Z] [runtime-status] [10912] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-functions/lib/index.js"} 
+[debug] [2020-05-14T04:16:50.926Z] [runtime-status] [10912] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"/mnt/c/Users/IzakR/vuex/gameguides-firebase-auth/functions/node_modules/firebase-admin/lib/index.js"}} 
+[debug] [2020-05-14T04:16:50.928Z] [runtime-status] [10912] initializeApp(DEFAULT) {"databaseURL":"https://paz-game-guides.firebaseio.com","storageBucket":"paz-game-guides.appspot.com","projectId":"paz-game-guides"} 
+[debug] [2020-05-14T04:16:50.930Z] [worker-~diagnostic~-bbb82c03-33d5-4890-9616-42dba2200122]: IDLE 
