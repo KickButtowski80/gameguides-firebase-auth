@@ -14,7 +14,7 @@
               <v-row>
                 <v-col cols="12">Logged in as: {{ userInfo["email"] }}</v-col>
                 <v-col cols="12">Bio {{userBio}}</v-col>
-               <v-col>{{userInfo}}</v-col>
+                <v-col v-show="userInfo.admin">Admin User</v-col>
               </v-row>
             </v-container>
           </v-card-text>
