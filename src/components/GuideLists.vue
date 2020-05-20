@@ -5,10 +5,10 @@
         <v-alert border="left" color="indigo" dark>please login to see the guides list</v-alert>
       </v-col>
     </v-row>
-
-    {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{
+   <span v-show="false">  {{ userIsAuthenticated }}--{{ this.$store.getters.user }}--{{
     guidesListStatus
-    }}
+    }}</span>
+  
     <v-row v-show="userIsAuthenticated && admin">
       <v-col>
         <make-anuser-amdin></make-anuser-amdin>
