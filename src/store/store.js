@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { auth } from "../main";
 import { db } from "../main";
- 
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -11,10 +11,9 @@ export const store = new Vuex.Store({
     guides: [],
     bios: [],
     bio: "empty",
- 
+    message: "",
   },
   getters: {
-  
     user: (state) => state.user,
     guides: (state) => state.guides,
     guide: (state) => (guideItem) => {
@@ -22,6 +21,7 @@ export const store = new Vuex.Store({
     },
 
     bio: (state) => state.bio,
+    message: (state) => state.message,
   },
   mutations: {
     setUser(state, payload) {
@@ -43,9 +43,14 @@ export const store = new Vuex.Store({
     setMessagetoLogin(state, payload) {
       state.message = payload;
     },
-
     setAdmin(state, payload) {
-       state.user.admin = payload
+      state.user.admin = payload;
+    },
+    setMessage(state, payload) {
+      state.message = payload;
+      setTimeout(function(){ 
+        state.message =""
+       }, 10000);
 
     },
   },
@@ -112,8 +117,10 @@ export const store = new Vuex.Store({
         };
         commit("setUser", newUser);
         commit("setBio", newBio);
+        commit("setMessage", "Successful sign up congrat");
       } catch (error) {
         console.log(error.message);
+        commit("setMessage", error.message);
       }
     },
 
@@ -121,10 +128,11 @@ export const store = new Vuex.Store({
       try {
         const user = await auth.signOut();
         commit("setUser", null);
-        // commit("setGuides", null)
-        console.log("successful logout", user, JSON.stringify(user));
+        console.log("successful logout", user);
+        commit("setMessage", "successful logout");
       } catch (error) {
         console.log(error.message);
+        commit("setMessage", error.message);
       }
     },
 
@@ -136,15 +144,15 @@ export const store = new Vuex.Store({
           payload.email,
           payload.password
         );
-        // console.log(credential);
         let loggedInUser = {
           id: credential.user.uid,
           email: credential.user.email,
         };
 
         commit("setUser", loggedInUser);
+        commit("setMessage", "successful login")
       } catch (error) {
-        alert(error.message);
+        commit("setMessage", error.message);
       }
     },
 
